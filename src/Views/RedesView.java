@@ -13,7 +13,7 @@ import Utiles.Utiles;
 
 /**
  *
- * @author danny
+ * @author Jostin
  */
 public class RedesView extends javax.swing.JFrame {
 
@@ -80,7 +80,6 @@ public class RedesView extends javax.swing.JFrame {
             tblRedes.setEnabled(true);
         }
     }
-    Holaxd
     
     
 
