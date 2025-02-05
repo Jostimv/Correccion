@@ -1,0 +1,6 @@
+123	Equipo	10.0	10.0	
+123	Equipo2	10.0	10.0	
+123	Equipo1	9.0	9.0	
+123	Equipo3	45.0	45.0	
+123	Equipo4	123.0	123.0	
+null	null	null	null	

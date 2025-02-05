@@ -10,6 +10,8 @@ import Controller.EquiposCbx;
 import javax.swing.JOptionPane;
 import MTables.MTableRedes;
 import Utiles.Utiles;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -17,7 +19,7 @@ import Utiles.Utiles;
  */
 public class RedesView extends javax.swing.JFrame {
 
-    private final ControllerRedes redes = new ControllerRedes();
+    public ControllerRedes redes = new ControllerRedes();
     private MTableRedes mTableRedes = new MTableRedes();
     private Integer fila = -1;
 
@@ -30,6 +32,7 @@ public class RedesView extends javax.swing.JFrame {
         mTableRedes.setRedes(redes);
         tblRedes.setModel(mTableRedes);
         tblRedes.updateUI();
+        
     }
 
     public void clean() {
@@ -81,8 +84,11 @@ public class RedesView extends javax.swing.JFrame {
         }
     }
     
+    public void crearInputDialog(){
+        redes.mediaTransmisionAlta(JOptionPane.showInputDialog(this, "Ingrese el equipo 1:"), JOptionPane.showInputDialog(this, "Ingrese el equipo 2:"));
+        
+    }
     
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,6 +110,8 @@ public class RedesView extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnGenerar = new javax.swing.JButton();
         btnRegistrarMedia = new javax.swing.JButton();
+        btnCargarArchivo = new javax.swing.JButton();
+        btnGuardarArchivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -207,7 +215,28 @@ public class RedesView extends javax.swing.JFrame {
         jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
 
         btnRegistrarMedia.setText("REGISTRAR MEDIA");
+        btnRegistrarMedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarMediaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRegistrarMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+
+        btnCargarArchivo.setText("CARGAR ARCHIVO");
+        btnCargarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarArchivoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCargarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, -1, -1));
+
+        btnGuardarArchivo.setText("GUARDAR ARCHIVO");
+        btnGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarArchivoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 540));
 
@@ -238,6 +267,27 @@ public class RedesView extends javax.swing.JFrame {
     private void tblRedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRedesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblRedesMouseClicked
+
+    private void btnRegistrarMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMediaActionPerformed
+        // TODO add your handling code here:
+        crearInputDialog();
+    }//GEN-LAST:event_btnRegistrarMediaActionPerformed
+
+    private void btnGuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarArchivoActionPerformed
+        // TODO add your handling code here:
+        if (redes.generarFiles() == true) {
+            JOptionPane.showMessageDialog(this, "Guardado correctamente", "OK!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error, intente mas tarde.", ":v", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGuardarArchivoActionPerformed
+
+    private void btnCargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarArchivoActionPerformed
+        // TODO add your handling code here:
+        if(redes.cargarArchivo()){
+            cargarTable();
+        }
+    }//GEN-LAST:event_btnCargarArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,8 +325,10 @@ public class RedesView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCargarArchivo;
     private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarArchivo;
     private javax.swing.JButton btnRegistrarMedia;
     private javax.swing.JComboBox<String> cbxSeleccionEquipos;
     private javax.swing.JLabel jLabel1;
